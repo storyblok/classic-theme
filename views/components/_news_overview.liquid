@@ -1,0 +1,23 @@
+{{blok._editable}}
+<div class="uk-container uk-container-center">
+  <h1 class="uk-margin-large-top">{{blok.title}}</h1>
+  {% set newsitems from stories starts_with:'news', per_page: 25, sort_by: 'random():asc' %}
+
+  <div class="uk-grid uk-margin-large-top ">
+    <main class="uk-width-2-3">
+      <ul class="uk-grid uk-margin-large-bottom">
+      {% for news in newsitems.data %}
+        <li class="uk-width-1-1 uk-width-medium-1-2 uk-margin-bottom">
+          <a href="/{{news.full_slug}}" class="uk-panel uk-panel-box">
+            <div class="uk-panel-teaser">
+              <img src="{{ news.content.image | resize:'500x' }}" alt="">
+            </div>
+            <p>{{ news.content.title }}</p>
+          </a>
+        </li>
+      {% endfor %}
+      </ul>
+    </main>
+    {% include 'sidebar' %}
+  </div>
+</div>

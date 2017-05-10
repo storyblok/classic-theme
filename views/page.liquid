@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Storyblok - {{ story.name }}</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Titillium+Web:200');
+  </style>
+  <link href="{{ 'assets/theme.css' | asset_url }}" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+  {% include 'header' %}
+
+  {% include story.content.component with blok: story.content, title: story.name, date: story.created_at %}
+
+  {% include 'footer' %}
+
+  <div id="fb-root"></div>
+  <script deffer>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.9&appId=147075705660474";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+
+
+  <script type="text/javascript" src="{{ 'assets/js/scripts.js' | asset_url }}"></script>
+  <script type="text/javascript" src="//app.storyblok.com/storyblok-latest.js"></script>
+  <script type="text/javascript">
+
+    storyblok.init({
+      accessToken: '{{ public_token }}'
+    });
+
+    storyblok.on('change', function() {
+      location.reload(true);
+    });
+
+    storyblok.pingEditor(function() {
+      if (storyblok.inEditor) {
+        storyblok.enterEditmode();
+      }
+    });
+
+  </script>
+</body>

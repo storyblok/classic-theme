@@ -1,0 +1,30 @@
+{{blok._editable}}
+<div class="news">
+  <div class="news__hero uk-cover-background" style="background-image:url('{{blok.image}}')"></div>
+  <div class="uk-container uk-container-center uk-margin-large-top">
+    <div class="uk-grid">
+      <main class="uk-width-1-1 uk-width-medium-2-3">
+
+        <h1 class="news__title">{{blok.title}}</h1>
+
+        <div class="news__teaser">
+          {{blok.teaser|markdown}}
+        </div>
+        {% for content in blok.content %}
+          {% include content.component with blok: content %}
+        {% endfor %}
+        <hr>
+
+        <div class="news__comments uk-margin-large-top uk-margin-large-bottom">
+          <h2>{{ 'comments' | label:'labels' }}</h2>
+          <div class="fb-comments" data-numposts="1"></div>
+        </div>
+      </main>
+
+      {% include 'sidebar' %}
+
+
+    </div>
+
+  </div>
+</div>

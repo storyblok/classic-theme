@@ -1,0 +1,26 @@
+<aside class="uk-width-1-1 uk-width-medium-1-3">
+
+  <div class="banner"> <a href="https://app.storyblok.com/#!/signup"> Try out Storyblok<br> <small>Free Plan for small sites</small> </a> </div>
+  <hr>
+
+  <h2>{{ 'more_entries' | label:'labels' }}</h2>
+  {% set newsitems from stories starts_with:'news', per_page: 3, sort_by: 'random():asc' %}
+  <ul class="news__entries uk-list">
+  {% for news in newsitems.data %}
+    <li class="uk-margin-bottom">
+      <a href="/{{news.full_slug}}" class="uk-panel uk-panel-box">
+        <div class="uk-panel-teaser">
+            <img src="{{ news.content.image | resize:'355x' }}" alt="">
+        </div>
+        <p>{{ news.content.title }}</p>
+      </a>
+    </li>
+  {% endfor %}
+  </ul>
+  <hr>
+
+  <div class="uk-cover">
+    <iframe class="uk-width-1-1" src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fstoryblok&tabs=timeline&width=350&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=147075705660474" width="350" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+  </div>
+
+</aside>
