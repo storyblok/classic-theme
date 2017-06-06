@@ -3,7 +3,7 @@
   <div class="banner"> <a href="https://app.storyblok.com/#!/signup"> Try out Storyblok<br> <small>Free Plan for small sites</small> </a> </div>
   <hr>
 
-  <h2>{{ 'more_entries' | label:'labels' }}</h2>
+  <h2>More entries</h2>
   {% set newsitems from stories starts_with:'news', per_page: 3, sort_by: 'random():asc' %}
   <ul class="news__entries uk-list">
   {% for news in newsitems.data %}
